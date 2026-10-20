@@ -52,7 +52,7 @@ npm run registry:snapshot
 | New persistent client state | `stores/<name>Store.ts` (use `zustandStorage`) |
 | New Zod schema | `modules/<module>/<module>.dto.ts` |
 | New primitive | `libs/<name>.ts` |
-| New translation key | `modules/<module>/dictionaries/<lang>.json` — flat next-boilerplate keys `<module>.<area>.<slug>` (reuse the web key when the text is the same); all six languages |
+| New translation key | `modules/<module>/dictionaries/<lang>.json` — flat next-boilerplate keys `<module>.<area>.<slug>` (reuse the web key when the text is the same); all six languages; then refresh the server snapshot — `npm run translation:sync-mobile -- ../expo-react-native-boilerplate` in next-boilerplate, commit its `modules/translation/data/mobile.en*.json` |
 | Expo config (icons, splash, plugins) | `app.config.ts` |
 | Tailwind theme | `tailwind.config.js` |
 | Tests | `__tests__/<name>.test.ts(x)` |

@@ -185,7 +185,7 @@ import { getToken } from "@/libs/secureStorage";
 | add a new persistent client state | `stores/<name>Store.ts` (use `zustandStorage`) |
 | add a new DTO / schema | `modules/<module>/<module>.dto.ts` (Zod) |
 | add a new primitive (axios interceptor, env key, etc.) | `libs/<name>.ts` |
-| add a new translation key | `modules/<module>/dictionaries/<lang>.json` — flat next-boilerplate keys `<module>.<area>.<slug>` (reuse the web key when the text is the same); all six languages |
+| add a new translation key | `modules/<module>/dictionaries/<lang>.json` — flat next-boilerplate keys `<module>.<area>.<slug>` (reuse the web key when the text is the same); all six languages; then refresh the server snapshot — `npm run translation:sync-mobile -- ../expo-react-native-boilerplate` in next-boilerplate, commit its `modules/translation/data/mobile.en*.json` |
 | configure Expo (icons, splash, plugins) | [app.config.ts](app.config.ts) |
 | change Tailwind theme | [tailwind.config.js](tailwind.config.js) |
 | change runtime config | [config/](config/) |
