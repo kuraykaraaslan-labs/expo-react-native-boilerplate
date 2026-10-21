@@ -54,3 +54,5 @@ yarn-error.*
 .vscode/
 .expo/
 .junk
+# jest coverage reports (npm run test:coverage)
+coverage/

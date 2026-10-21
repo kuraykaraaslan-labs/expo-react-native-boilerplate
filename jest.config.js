@@ -16,10 +16,26 @@ module.exports = {
   ],
   testRegex: "\\.(test|spec)\\.(ts|tsx)$",
   testPathIgnorePatterns: ["/node_modules/", "<rootDir>/\\.junk/"],
+  // Measured scope of the test phases (docs/phases/19-tests): screens (app/**) are a later phase,
+  // dictionaries are data, not code.
   collectCoverageFrom: [
     "hooks/**/*.ts",
     "stores/**/*.ts",
     "libs/**/*.ts",
+    "modules/**/*.ts",
+    "utils/**/*.ts",
     "components/**/*.tsx",
+    "!modules/**/dictionaries/**",
   ],
+  // Ratchet (docs/phases/19-tests): checked by `npm run test:coverage`; never lowered.
+  // `global` is the floor for everything not listed below (a listed path leaves the global pool).
+  // A finished phase adds its paths at 75 / 75 / 75 on each metric.
+  coverageThreshold: {
+    global: { lines: 58, statements: 57, functions: 54, branches: 45 },
+    // Phase 1 — i18n and remote translations
+    "./libs/i18n.ts": { lines: 75, statements: 75, functions: 75, branches: 75 },
+    "./libs/translations.ts": { lines: 75, statements: 75, functions: 75, branches: 75 },
+    "./stores/translationStore.ts": { lines: 75, statements: 75, functions: 75, branches: 75 },
+    "./modules/localization/": { lines: 75, statements: 75, functions: 75, branches: 75 },
+  },
 };

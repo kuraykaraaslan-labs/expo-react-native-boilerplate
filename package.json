@@ -12,6 +12,8 @@
     "build": "expo export",
     "test": "jest --watchAll",
     "test:ci": "jest --ci",
+    "test:coverage": "jest --ci --coverage",
+    "test:contract": "jest -c jest.contract.config.js --ci --runInBand",
     "lint": "expo lint",
     "typecheck": "tsc --noEmit",
     "registry:snapshot": "node scripts/build-registry-snapshot.mjs",

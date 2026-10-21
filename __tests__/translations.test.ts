@@ -9,7 +9,9 @@ import {
   resetTranslationSyncForTests,
   selectLanguage,
   syncTranslations,
+  useLocales,
 } from "@/libs/translations";
+import { act, renderHook } from "@testing-library/react-native";
 import { useAppStore } from "@/stores/appStore";
 import { useTranslationStore } from "@/stores/translationStore";
 import { fail, mockRoute, type Seen } from "./_helpers";
@@ -127,6 +129,31 @@ describe("syncTranslations", () => {
     await syncTranslations();
     expect(seen).toHaveLength(1);
   });
+
+  it("shares one request between overlapping syncs", async () => {
+    const seen = mockRoute("get", "/localization/languages", { languages: [EN] });
+    serveLanguage("en", { account: ["v1", {}] });
+    await Promise.all([syncTranslations({ force: true }), syncTranslations({ force: true })]);
+    expect(seen).toHaveLength(1);
+  });
+
+  it("forgets a language the server withdrew, and its texts", async () => {
+    cache({ bg: { account: { version: "v1", messages: BG_ACCOUNT } } });
+    mockRoute("get", "/localization/languages", { languages: [EN] });
+    serveLanguage("en", { account: ["v1", {}] });
+    await syncTranslations();
+    expect(useTranslationStore.getState().bundles.bg).toBeUndefined();
+    expect(i18n.t("account.settingsHub.title", { lng: "bg" })).toBe("Settings"); // English fallback
+  });
+
+  it("keeps a withdrawn language that is on screen, so the UI is never yanked mid-use", async () => {
+    cache({ bg: { account: { version: "v1", messages: BG_ACCOUNT } } });
+    await i18n.changeLanguage("bg");
+    mockRoute("get", "/localization/languages", { languages: [EN] });
+    await syncTranslations();
+    expect(useTranslationStore.getState().bundles.bg.account.version).toBe("v1");
+    expect(i18n.t("account.settingsHub.title")).toBe("Настройки");
+  });
 });
 
 describe("selectLanguage", () => {
@@ -238,6 +265,32 @@ describe("profile language that cannot be downloaded yet", () => {
     expect(i18n.language).toBe("tr");
   });
 
+  it("stays pending while the download keeps failing", async () => {
+    useTranslationStore.setState({ languages: [EN, BG] });
+    profileAsks("bg");
+    serveLanguage("bg", { account: 500, auth: 500 });
+    await pullPreferences();
+    mockRoute("get", "/localization/languages", { languages: [EN, BG] });
+    serveLanguage("en", { account: ["v1", {}] });
+    await syncTranslations();
+    expect(getPendingLanguage()).toBe("bg");
+    expect(i18n.language).toBe("en");
+    expect(toast.success).not.toHaveBeenCalled();
+  });
+
+  it("is dropped when the server withdraws it before it could be downloaded", async () => {
+    useTranslationStore.setState({ languages: [EN, BG] });
+    profileAsks("bg");
+    serveLanguage("bg", { account: 500, auth: 500 });
+    await pullPreferences();
+    mockRoute("get", "/localization/languages", { languages: [EN] });
+    serveLanguage("en", { account: ["v1", {}] });
+    await syncTranslations();
+    expect(getPendingLanguage()).toBeNull();
+    expect(i18n.language).toBe("en");
+    expect(toast.success).not.toHaveBeenCalled();
+  });
+
   it("is ignored silently when neither the app nor the server offers it", async () => {
     useTranslationStore.setState({ languages: [EN, BG] });
     profileAsks("ja");
@@ -266,6 +319,29 @@ describe("getAvailableLocales", () => {
 
   it("falls back to the bundled flag, then a globe, when the server sends none", () => {
     expect(getAvailableLocales([{ ...EN, flag: null }, { ...BG, flag: undefined }]).map((l) => l.flag)).toEqual(["🇬🇧", "🌐"]);
+  });
+});
+
+describe("useLocales", () => {
+  it("follows the server's list as it changes", async () => {
+    const { result } = await renderHook(() => useLocales());
+    expect(result.current.map((l) => l.code)).toEqual(["en", "tr", "de", "es", "fr", "it"]);
+    await act(async () => useTranslationStore.setState({ languages: [EN, BG] }));
+    expect(result.current.map((l) => l.code)).toEqual(["en", "bg"]);
+  });
+});
+
+describe("translation cache store", () => {
+  it("removing a module of a language that was never cached changes nothing", () => {
+    cache({ bg: { account: { version: "v1", messages: BG_ACCOUNT } } });
+    useTranslationStore.getState().removeBundle("de", "account");
+    expect(Object.keys(useTranslationStore.getState().bundles)).toEqual(["bg"]);
+  });
+
+  it("drops a cache written by an older app version (other key format)", () => {
+    const migrate = useTranslationStore.persist.getOptions().migrate!;
+    const old = { languages: [BG], bundles: { bg: { account: { version: "v1", messages: { "ACCOUNT.TITLE": "Настройки" } } } } };
+    expect(migrate(old, 1)).toEqual({ languages: [], bundles: {} });
   });
 });
 

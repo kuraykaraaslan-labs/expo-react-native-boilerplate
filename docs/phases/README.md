@@ -63,6 +63,7 @@ The server side, however, is **ready**: the bearer flow has been added with `aud
 | 16 | [platform/phase-16-realtime-messaging.md](14-platform/16-realtime-messaging.md) | Socket.IO transport and messaging | ⬜ Planned · P2 |
 | 17 | [platform/phase-17-search.md](14-platform/17-search.md) | Global search (+ navigation decision) | ⬜ Planned · P2 |
 | 18 | [platform/phase-18-tenant-admin.md](14-platform/18-tenant-admin.md) | API keys and domains | ⬜ Planned · P2 |
+| 19 | [tests/README.md](19-tests/README.md) | Tests: every area to ≥ 75 % lines / functions / branches, ratchet, API + contract harness (sister of next-boilerplate `33-tests`) | 🟡 Phases 0–1 done 2026-10-21 · progress in [19-tests/99-progress.md](19-tests/99-progress.md) |
 
 ## Locked decisions
 
