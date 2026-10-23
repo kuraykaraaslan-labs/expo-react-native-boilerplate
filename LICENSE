@@ -1,0 +1,77 @@
+Expo React Native Boilerplate — Commercial License
+
+Copyright (c) 2024-2026 Kuray Karaaslan. All rights reserved.
+
+This software and its source code (the "Software") are proprietary. The
+Software is licensed, not sold. It is NOT open source, even where its
+repository can be read publicly: reading it grants no right to use it.
+
+1. Who may use the Software
+   Only a person or organization that has signed a Customer Agreement with
+   the licensor (the "Customer"). The Customer Agreement names the number of
+   deployments, the start date and the price. If the Customer
+   Agreement and this license disagree, the Customer Agreement wins.
+
+2. What the Customer may do
+   (a) Install and run the Software on the number of deployments the
+       Customer Agreement states. A "deployment" is one running installation
+       with its own database, whatever number of servers it uses.
+   (b) Read, change and extend the source code, and build its own products
+       on it.
+   (c) Operate those products for its own business and offer them to its
+       own customers and their users, hosted or on its own premises,
+       including selling plans and features to its tenants.
+   (d) Let its employees and contractors work on the Software for the
+       Customer, bound by obligations at least as strict as these.
+
+3. Versions and updates
+   (a) The right to use every version delivered to the Customer is
+       perpetual, subject to section 6.
+   (b) The Customer receives the new versions the licensor releases during
+       the update period stated in the Customer Agreement (12 months unless
+       it says otherwise). A renewal extends the period. When it ends,
+       delivery of new versions stops; the versions already delivered keep
+       working.
+
+4. What the Customer may not do
+   (a) Give, sell, sublicense, publish or otherwise make available the
+       Software or any substantial part of its source code to anyone else,
+       changed or unchanged, except as running software inside the products
+       of section 2(c).
+   (b) Sell, license or offer the Software, or a product whose main purpose
+       is to be a starter kit, boilerplate, framework or platform for
+       building other software, in competition with the Software.
+   (c) Use it on more deployments than licensed.
+   (d) Remove or change the copyright and license notices.
+   (e) Remove, disable or work around license-checking functionality the
+       Software contains, where the Customer's license makes it apply.
+
+5. Ownership
+   The licensor keeps all rights in the Software that this license does not
+   expressly grant. Changes and new works the Customer makes belong to the
+   Customer, except for the parts of the Software they contain.
+
+6. Termination
+   If the Customer breaches this license or the Customer Agreement and does
+   not cure the breach within 30 days of written notice, the licenses end
+   and the Customer must stop using and delete the Software. Products the
+   Customer's own customers rely on may be wound down within 90 days.
+   Ending the update period is not a termination.
+
+7. No warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT,
+   EXCEPT AS THE CUSTOMER AGREEMENT EXPRESSLY STATES.
+
+8. Limitation of liability
+   AS FAR AS THE LAW ALLOWS, THE LICENSOR IS NOT LIABLE FOR ANY INDIRECT,
+   INCIDENTAL OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, AND ITS
+   TOTAL LIABILITY UNDER THIS LICENSE IS LIMITED TO THE FEES THE CUSTOMER
+   PAID IN THE 12 MONTHS BEFORE THE CLAIM, EXCEPT AS THE CUSTOMER AGREEMENT
+   EXPRESSLY STATES.
+
+Without a Customer Agreement no right to copy, change, run, distribute or
+host the Software is granted.
+
+For licensing inquiries, see the pricing section of the product site.

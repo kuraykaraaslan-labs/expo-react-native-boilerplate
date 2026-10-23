@@ -204,3 +204,7 @@ Work is organized into phases; [docs/phases/README.md](docs/phases/README.md) ha
 2. Follow the rules in [AGENTS.md](AGENTS.md); run `npm run typecheck`, `npm run lint` and `npm run test:ci`.
 3. Use Conventional Commits (`feat(scope): ...`, `fix(scope): ...`).
 4. Open a pull request.
+
+## License
+
+Commercial — see [`LICENSE`](LICENSE). The repository can be read publicly, but reading it grants no right to use the code: that needs a Customer Agreement.
