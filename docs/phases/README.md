@@ -63,6 +63,9 @@ The server side, however, is **ready**: the bearer flow has been added with `aud
 | 16 | [platform/phase-16-realtime-messaging.md](14-platform/16-realtime-messaging.md) | Socket.IO transport and messaging | ⬜ Planned · P2 |
 | 17 | [platform/phase-17-search.md](14-platform/17-search.md) | Global search (+ navigation decision) | ⬜ Planned · P2 |
 | 18 | [platform/phase-18-tenant-admin.md](14-platform/18-tenant-admin.md) | API keys and domains | ⬜ Planned · P2 |
+| 19 | [iot/19-iot-glance.md](19-iot/19-iot-glance.md) | IoT glance: devices, alarms, latest values (read-only) | ⬜ Planned · P1 |
+| 20 | [iot/20-approvals.md](19-iot/20-approvals.md) | Approvals on the phone: queue steps, quarantined devices, critical IoT commands (owner 2026-11-08) | ⬜ Planned · P1 · critical commands 🔴 (NB phase 62) |
+| 21 | [iot/21-phone-as-device.md](19-iot/21-phone-as-device.md) | The phone as an IoT device sending telemetry (owner 2026-11-08) | ⬜ Planned · P1 · pairing 🔴 (NB phase 62) |
 
 ## Locked decisions
 
